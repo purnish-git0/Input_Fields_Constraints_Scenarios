@@ -1,17 +1,15 @@
 package entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.Builder;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Set;
 
-@Entity
-@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Data
 public class Field {
 
     @Id
@@ -20,6 +18,15 @@ public class Field {
     private String key;
 
     private String value;
+
+    private String fieldType;
+
+    private String description;
+
+    @ManyToMany
+    @JoinTable(name = "field_constraints", joinColumns = @JoinColumn(name = "constraint_id"),
+    inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
+    private Set<Constraint> constraints;
 
     @ManyToOne
     @JoinColumn(name = "scenario_id")

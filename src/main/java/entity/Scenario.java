@@ -4,13 +4,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Map;
 import java.util.Set;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 @Data
-@Entity
 public class Scenario {
 
     @Id
