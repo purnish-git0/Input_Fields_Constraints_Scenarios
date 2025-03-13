@@ -15,7 +15,11 @@ public class Action {
     @Id
     private Integer id;
 
+    @ManyToMany
+    @JoinTable(name = "action_fields", joinColumns = @JoinColumn(name = "field_id"),
+            inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
 
+    private Set<Field> fields;
 
     @ManyToMany
     @JoinTable(name = "action_constraints", joinColumns = @JoinColumn(name = "constraint_id"),

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import rules.request.CreateConstraintDTO;
 import rules.service.ConstraintService;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/api/v1/constraint")
 public class ConstraintController {
@@ -18,9 +20,14 @@ public class ConstraintController {
         this.constraintService = constraintService;
     }
 
+
     public ResponseEntity<String> createConstraint(@RequestBody CreateConstraintDTO createConstraintDTO) {
-        constraintService.createConstraint(createConstraintDTO.getFieldId(), createConstraintDTO.getConstraintType());
+        constraintService.createConstraint(createConstraintDTO.getFieldId(), createConstraintDTO.getConstraintType(), createConstraintDTO.getArgs());
         return ResponseEntity.ok("done");
+    }
+
+    public ResponseEntity<String> createScenarioFromConstraints(@RequestBody Set<Integer> constraints) {
+
     }
 
 

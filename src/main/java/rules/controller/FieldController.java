@@ -1,5 +1,6 @@
 package rules.controller;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import rules.entity.Field;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +20,7 @@ public class FieldController {
         this.fieldRepository = fieldRepository;
     }
 
+    @PostMapping("/create-field")
     public ResponseEntity<String> createField(@RequestBody CreateFieldDTO createFieldDTO) {
         Field field = Field.builder()
                 .key(createFieldDTO.getName())

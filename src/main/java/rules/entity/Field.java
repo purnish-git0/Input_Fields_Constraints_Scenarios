@@ -24,13 +24,13 @@ public class Field {
 
     private String description;
 
-    @ManyToMany
-    @JoinTable(name = "field_constraints", joinColumns = @JoinColumn(name = "constraint_entity_id"),
-    inverseJoinColumns = @JoinColumn(referencedColumnName = "id"))
+    @OneToMany(mappedBy = "field")
     private Set<ConstraintEntity> constraints;
 
     @ManyToOne
     @JoinColumn(name = "scenario_id")
     private Scenario scenario;
 
+    @ManyToMany(mappedBy = "fields")
+    private Set<Action> actions;
 }
